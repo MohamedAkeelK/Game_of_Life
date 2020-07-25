@@ -7,7 +7,7 @@ class GameOfLife {
   }
 
 
-  /**
+  /**u
    * Returns a 2D Array
    */
 
@@ -27,7 +27,7 @@ class GameOfLife {
     for (let i = 0; i < height; i++) {
       let row = [];
         for (let j = 0; j < width; j++) {
-          row.push(1)
+          row.push(0)
         }
         arr.push(row)
     }
@@ -35,18 +35,18 @@ class GameOfLife {
   }
 
   getCell(row, col) {
-    let board = this.board
+    let board = this.board; // why not this.arr wouldnt it return just a function value and not the actual
     let cell = board[row][col]
     return cell
   }
 
   setCell(val, row, col) {
     let board = this.board
-    board[row[col]] = val
+    board[row][col] = val
     console.log(board)
   }
 
-  toggleCell(row,col) {
+  toggleCell(row, col) {
     let board = this.board 
     if(board[row][col] === 0) {
       board[row][col] = 1
@@ -67,13 +67,13 @@ class GameOfLife {
     // TODO: Return the count of living neighbors.
     let board = this.board;
   
-    // let count = 0;
-    // for(let i = 0; i < col; i++) {
-    //   for(let j = 0; j < row; j++) {
+    
+    for(let i = 0; i < col; i++) {
+      for(let j = 0; j < row; j++) {
 
-    //     let sum = 0;
-    //     let neighbors = count(this.board, i , j);
-    //     // 0 0 0 
+        let sum = 0;
+        let neighbors = countNeighbors(this.board, i , j);
+    //  // 0 0 0 
         // 0 0 0 
         // 0 0 0
         
@@ -87,15 +87,21 @@ class GameOfLife {
         // count += board[i - 1][j + 1]; //top left
         // count += board[i - 1][j]; //left
         // count--; // subtract self
-    //   }
-    // }
-    // return count;
+      }
+    }
+
   }
 
-
+  
 
   /**
    * Given the present board, apply the rules to generate a new board
+   * 
+   *  tick function is responsible for producing the next iteration of the game.
+   *  First, it makes a new board of cells. Then, it should loop over each 
+   * cell in the current board, count it's livingNeighbors, and, based on 
+   * the Game of life rules, change the cells in the newBoard to their future status.
+
    */
 
   tick() {
@@ -119,6 +125,19 @@ class GameOfLife {
 
     this.board = newBoard;
   }
+
+   countNeighbors(board, x, y) {
+
+    let sum = 0;
+
+    for(let i = -1; i < 2; i++) {
+      for(let j = -1; j < 2; j++) {
+        sum += board[i][j];
+      }
+    }
+    sum -= board[i][j];
+    return sum;
+  }
+
+
 }
-
-
