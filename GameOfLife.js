@@ -6,12 +6,9 @@ class GameOfLife {
     this.Neighbors = this.livingNeighbors;
   }
 
-
   /**u
    * Returns a 2D Array
    */
-
-  makeBoard(height, width) {
     // TODO: Create and return an 2D Array
     // with `this.heigh` as rows and `this.width` as cols.
     // For example, given a height of 4 and a width of 3, it will generate:
@@ -21,6 +18,8 @@ class GameOfLife {
     //  [0, 0, 0],
     //  [0, 0, 0],
     // ]
+  makeBoard(height, width) {
+
     height = this.height
     width = this.width
     let arr = [];
@@ -34,8 +33,11 @@ class GameOfLife {
     return arr;
   }
 
+
+  //utility functions 
+
   getCell(row, col) {
-    let board = this.board; // why not this.arr wouldnt it return just a function value and not the actual
+    let board = this.board; 
     let cell = board[row][col]
     return cell
   }
@@ -55,25 +57,10 @@ class GameOfLife {
     }
   }
 
-
-  
-
-
   /**
    * Return the amount of living neighbors around a given coordinate.
    */
-
-  livingNeighbors(row, col) {
-    // TODO: Return the count of living neighbors.
-    let board = this.board;
-  
-    
-    for(let i = 0; i < col; i++) {
-      for(let j = 0; j < row; j++) {
-
-        let sum = 0;
-        let neighbors = countNeighbors(this.board, i , j);
-    //  // 0 0 0 
+  //  // 0 0 0 
         // 0 0 0 
         // 0 0 0
         
@@ -87,46 +74,13 @@ class GameOfLife {
         // count += board[i - 1][j + 1]; //top left
         // count += board[i - 1][j]; //left
         // count--; // subtract self
-      }
-    }
-
-  }
-
-  
-
-  /**
-   * Given the present board, apply the rules to generate a new board
-   * 
-   *  tick function is responsible for producing the next iteration of the game.
-   *  First, it makes a new board of cells. Then, it should loop over each 
-   * cell in the current board, count it's livingNeighbors, and, based on 
-   * the Game of life rules, change the cells in the newBoard to their future status.
-
-   */
-
-  tick() {
-    const newBoard = this.makeBoard();
-    // TODO: Here is where you want to loop through all the cells
-    // on the existing board and determine, based on it's neighbors,
-    // whether the cell should be dead or alive in the new board
-    // (the next iteration of the game)
-    //
-    // You need to:
-    // 1. Count alive neighbors for all cells
-    // 2. Set the next state of all cells in newBoard,
-    // based on their current alive neighbors
-
-    // let board = this.board
-    // for(i = 0; i < board; i++) {
-    //   for(j = 0; j < )
-
-    // }
+      
     
-
-    this.board = newBoard;
-  }
-
-   countNeighbors(board, x, y) {
+    // return neighbors;
+  
+  livingNeighbors(row, col) {
+    // TODO: Return the count of living neighbors.
+    let board = this.board;
 
     let sum = 0;
 
@@ -139,5 +93,47 @@ class GameOfLife {
     return sum;
   }
 
+    
+
+  /**
+   * Given the present board, apply the rules to generate a new board
+   * 
+   *  tick function is responsible for producing the next iteration of the game.
+   *  First, it makes a new board of cells. Then, it should loop over each 
+   * cell in the current board, count it's livingNeighbors, and, based on 
+   * the Game of life rules, change the cells in the newBoard to their future status.
+   */
+   // TODO: Here is where you want to loop through all the cells
+    // on the existing board and determine, based on it's neighbors,
+    // whether the cell should be dead or alive in the new board
+    // (the next iteration of the game)
+    //
+    // You need to:
+    // 1. Count alive neighbors for all cells
+    // 2. Set the next state of all cells in newBoard,
+    // based on their current alive neighbors
+
+  tick() {
+    const newBoard = this.makeBoard();
+   
+    // let state = board
+    
+    // for(let i = 0; i < col; i++) {
+    //   for(let j = 0; j < row; j++) {
+
+    //     if(i == 0 || i == col -1 || j == 0 || j == row -1) {
+    //       state[i][j] = board[i][j];
+    //     } else {
+
+    //     let sum = 0;
+    //     let neighbors = countNeighbors(this.board, i , j);
+
+    //     let state = board[i][j];
+
+    //    }
+    //   }
+    // }
+    this.board = newBoard;
+  }
 
 }
